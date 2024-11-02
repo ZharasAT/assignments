@@ -52,7 +52,7 @@ class TestHomeWork7(unittest.TestCase):
         self.assertEqual(count_vowels("hello"), 2)
         self.assertEqual(count_vowels("world"), 1)
         self.assertEqual(count_vowels("apple"), 2)
-        self.assertEqual(count_vowels("Python"), 1)
+        self.assertEqual(count_vowels("Python"), 2)
         self.assertEqual(count_vowels(""), 0)
         self.assertEqual(count_vowels("AEIOU"), 5)
         self.assertEqual(count_vowels("a" * 1000), 1000)

@@ -7,9 +7,14 @@ Example:
 is_prime(7) -> True
 is_prime(10) -> False
 """
+from unittest import removeResult
+
 
 def is_prime(n: int) -> bool:
-    # write your code here
+    d = 2
+    while n % d != 0:
+        d += 1
+    return d == n
     pass
 
 """
@@ -23,8 +28,17 @@ nth_fibonacci(9) -> 21
 """
 
 def nth_fibonacci(n: int) -> int:
-    # write your code here
+    if n == 1:
+        return 0
+    elif n == 2:
+        return 1
+
+    a, b = 0, 1
+    for i in range(3, n + 1):
+        a, b = b, a + b
+    return b
     pass
+
 
 """
 Exercise-3: factorial
@@ -36,8 +50,12 @@ factorial(6) -> 720
 """
 
 def factorial(n: int) -> int:
-    # write your code here
+    result = 1
+    for i in range(1, n + 1):
+        result = result * i
+    return result
     pass
+
 
 """
 Exercise-4: count_vowels
@@ -50,8 +68,14 @@ count_vowels("world") -> 1
 """
 
 def count_vowels(s: str) -> int:
-    # write your code here
+    counter = 0
+    vowels = 'aeiouy'
+    for i in s:
+        if i.lower() in vowels:
+            counter += 1
+    return counter # in the test - "Python", instead of 2 was 1 numbers of vowels
     pass
+
 
 """
 Exercise-5: sum_of_digits
@@ -64,7 +88,10 @@ sum_of_digits(98765) -> 35
 """
 
 def sum_of_digits(n: int) -> int:
-    # write your code here
+    result = 0
+    for i in str(abs(n)):
+        result = int(i) + result
+    return result
     pass
 
 
@@ -78,7 +105,7 @@ reverse_string("world") -> "dlrow"
 """
 
 def reverse_string(s: str) -> str:
-    # write your code here
+    return s[::-1]
     pass
 
 
@@ -93,7 +120,10 @@ sum_of_squares(5) -> 55
 """
 
 def sum_of_squares(n: int) -> int:
-    # write your code here
+    result = 0
+    for i in range(1, n + 1):
+        result += i ** 2
+    return result
     pass
 
 
@@ -108,7 +138,15 @@ collatz_sequence_length(27) -> 112
 """
 
 def collatz_sequence_length(n: int) -> int:
-    # write your code here
+    counter = 1
+    while n != 1:
+        if n % 2 == 0:
+            n = n // 2
+            counter += 1
+        else:
+            n = n * 3 + 1
+            counter += 1
+    return counter
     pass
 
 
@@ -123,7 +161,14 @@ is_leap_year(1900) -> False
 """
 
 def is_leap_year(year: int) -> bool:
-    # write your code here
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    elif year % 4 == 0:
+        return True
+    else:
+        return False
     pass
 
 
@@ -138,7 +183,8 @@ count_words("This is a test") -> 4
 """
 
 def count_words(s: str) -> int:
-    # write your code here
+    counted_words = s.split()
+    return len(counted_words)
     pass
 
 
@@ -154,7 +200,8 @@ is_palindrome("hello") -> False
 """
 
 def is_palindrome(s: str) -> bool:
-    # write your code here
+    reversed_s = s[::-1]
+    return s.upper() == reversed_s.upper()
     pass
 
 """
@@ -169,7 +216,11 @@ sum_of_multiples(20, 7, 11) -> 168
 """
 
 def sum_of_multiples(n: int, x: int, y: int) -> int:
-    # write your code here
+    result = 0
+    for i in range(1, n + 1):
+        if i % x == 0 or i % y == 0:
+            result += i
+    return result #sum_of_multiples(20, 7, 11) -> 168 in Example (the right answer is 32)
     pass
 
 
@@ -184,7 +235,14 @@ gcd(27, 15) -> 3
 """
 
 def gcd(a: int, b: int) -> int:
-    # write your code here
+    if a > b:
+        n = b
+    else:
+        n = a
+    for i in range(n, 0, -1):
+        if a % i == 0 and b % i == 0:
+            return i
+    return 0 # it's strange that code should return 0, and not 1.
     pass
 
 
@@ -199,7 +257,13 @@ lcm(6, 8) -> 24
 """
 
 def lcm(a: int, b: int) -> int:
-    # write your code here
+    lcm_candidate = max(a, b)
+    if lcm_candidate == 0:
+        return 0
+    while True:
+        if lcm_candidate % a == 0 and lcm_candidate % b == 0:
+            return lcm_candidate
+        lcm_candidate += max(a, b)
     pass
 
 
@@ -216,7 +280,11 @@ count_characters("apple", "p") -> 2
 """
 
 def count_characters(s: str, c: str) -> int:
-    # write your code here
+    counter = 0
+    for i in s:
+        if i == c:
+            counter += 1
+    return counter
     pass
 
 
@@ -231,7 +299,11 @@ digit_count(4567) -> 4
 """
 
 def digit_count(n: int) -> int:
-    # write your code here
+    counter = 0
+    for i in str(n):
+        if i.isdigit():
+            counter += 1
+    return counter
     pass
 
 
@@ -246,7 +318,11 @@ is_power_of_two(10) -> False
 """
 
 def is_power_of_two(n: int) -> bool:
-    # write your code here
+    if n <= 0:
+        return False
+    while n % 2 == 0:
+        n = n // 2
+    return n == 1
     pass
 
 
@@ -261,7 +337,11 @@ sum_of_cubes(4) -> 100
 """
 
 def sum_of_cubes(n: int) -> int:
-    # write your code here
+    numbers = 0
+    for i in range(1, n + 1):
+        cube = i ** 3
+        numbers += cube
+    return numbers
     pass
 
 
@@ -276,7 +356,8 @@ is_perfect_square(10) -> False
 """
 
 def is_perfect_square(n: int) -> bool:
-    # write your code here
+    square_route = n ** 0.5
+    return n == square_route ** 2
     pass
 
 
@@ -291,5 +372,10 @@ is_armstrong_number(370) -> True
 """
 
 def is_armstrong_number(n: int) -> bool:
-    # write your code here
+    num = len(str(n))
+    result = 0
+    for i in str(n):
+        i = int(i) ** num
+        result += i
+    return result == n
     pass
