@@ -10,8 +10,18 @@ count_substrings("aaaaaa", "aa") -> 3
 """
 
 def count_substrings(s: str, subs: str) -> int:
-    # write your code here
+    counter = 0
+    index = 0
+
+    while index <= len(s) - len(subs):
+        if s[index:index + len(subs)] == subs:
+            counter += 1
+            index += len(subs)
+        else:
+            index += 1
+    return counter
     pass
+
 
 """
 💎 Exercise-2: find_smallest_divisor
