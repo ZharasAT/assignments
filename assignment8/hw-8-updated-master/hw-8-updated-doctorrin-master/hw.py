@@ -8,6 +8,13 @@ count_unique_elements([1, 2, 3, 1, 2, 4, 5, 4]) -> 5
 """
 
 def count_unique_elements(my_list: list) -> int:
+    result = 0
+    from_my_list = []
+    for i in my_list:
+        if i not in from_my_list:
+            from_my_list.append(i)
+            result += 1
+    return result
     pass
 
 """
@@ -20,6 +27,11 @@ remove_duplicates([1, 2, 3, 1, 2, 4, 5, 4]) -> [1, 2, 3, 4, 5]
 """
 
 def remove_duplicates(my_list: list) -> list:
+    result = []
+    for i in my_list:
+        if i not in result:
+            result.append(i)
+    return result
     pass
 
 """
@@ -32,6 +44,8 @@ reverse_list([1, 2, 3, 4, 5]) -> [5, 4, 3, 2, 1]
 """
 
 def reverse_list(my_list: list) -> list:
+    reversed_list = list(reversed(my_list))
+    return reversed_list
     pass
 
 """
@@ -44,6 +58,8 @@ max_value([1, 2, 3, 4, 5]) -> 5
 """
 
 def max_value(my_list: list) -> int:
+    maximum = max(my_list)
+    return maximum
     pass
 
 """
@@ -56,6 +72,8 @@ min_value([1, 2, 3, 4, 5]) -> 1
 """
 
 def min_value(my_list: list) -> int:
+    minimum = sorted(my_list)[0]
+    return minimum
     pass
 
 """
@@ -68,6 +86,10 @@ sum_values([1, 2, 3, 4, 5]) -> 15
 """
 
 def sum_values(my_list: list) -> int:
+    result = 0
+    for i in my_list:
+        result += i
+    return result
     pass
 
 """
@@ -80,6 +102,10 @@ average([1, 2, 3, 4, 5]) -> 3.0
 """
 
 def average(my_list: list) -> float:
+    result = float
+    for i in my_list:
+        result += float(i)
+    return result / len(my_list)
     pass
 
 """
@@ -94,6 +120,10 @@ find_index([1, 2, 3, 4, 5], 6) -> -1
 """
 
 def find_index(my_list: list, element: int) -> int:
+    for index, value in enumerate(my_list):
+        if value == element:
+            return index
+    return -1
     pass
 
 """
@@ -109,6 +139,8 @@ is_sorted([1, 3, 2, 4, 5]) -> False
 """
 
 def is_sorted(my_list: list) -> bool:
+    sorted_my_list = sorted(my_list)
+    return sorted_my_list == my_list
     pass
 
 """
@@ -122,6 +154,11 @@ count_frequency([1, 2, 3, 4, 5, 1, 2, 3], 3) -> 2
 """
 
 def count_frequency(my_list: list, element: int) -> int:
+    number = 0
+    for i in my_list:
+        if i == element:
+            number += 1
+    return number
     pass
 
 """
@@ -135,6 +172,20 @@ find_mode([1, 2, 3, 4, 5, 1, 2, 2, 3]) -> 2
 """
 
 def find_mode(my_list: list) -> int:
+    if not my_list:
+        return None
+    mode = 0
+    max_count = 0
+    unique_list = set(my_list)
+    for index in unique_list:
+        num = 0
+        for i in my_list:
+            if i == index:
+                num += 1
+        if num > max_count:
+            max_count = num
+            mode = index
+    return mode
     pass
 
 """
@@ -148,6 +199,13 @@ remove_all([1, 2, 3, 4, 5, 1, 2, 3], 3) -> [1, 2, 4, 5, 1, 2]
 """
 
 def remove_all(my_list: list, element: int) -> list:
+    if not my_list:
+        return my_list
+    removed_list = my_list.copy()
+    for i in my_list:
+        if i == element:
+            removed_list.remove(i)
+    return removed_list
     pass
 
 """
@@ -160,6 +218,7 @@ rotate_left([1, 2, 3, 4, 5], 2) -> [3, 4, 5, 1, 2]
 """
 
 def rotate_left(my_list: list, k: int) -> list:
+    return my_list[k:] + my_list[:k]
     pass
 
 """
@@ -173,6 +232,8 @@ rotate_right([1, 2, 3, 4, 5], 2) -> [4, 5, 1, 2, 3]
 """
 
 def rotate_right(my_list: list, k: int) -> list:
+    k = k % len(my_list) if my_list else 0
+    return my_list[-k:] + my_list[:-k]
     pass
 
 """
@@ -185,6 +246,12 @@ find_intersection([1, 2, 3, 4], [3, 4, 5, 6]) -> [3, 4]
 """
 
 def find_intersection(list1: list, list2: list) -> list:
+    result = []
+    for index in set(list1):
+        for i in set(list2):
+            if i == index:
+                result.append(i)
+    return result
     pass
 
 """
@@ -198,6 +265,7 @@ find_union([1, 2, 3, 4], [3, 4, 5, 6]) -> [1, 2, 3, 4, 5, 6]
 """
 
 def find_union(list1: list, list2: list) -> list:
+    return list(set(list1) | set(list2))
     pass
 
 """
@@ -212,4 +280,5 @@ find_difference([1, 2, 3, 4], [3, 4, 5, 6]) -> [1, 2]
 """
 
 def find_difference(list1: list, list2: list) -> list:
+    return list(set(list1).difference(set(list2)))
     pass
