@@ -195,6 +195,7 @@ def most_frequent(my_list: list) -> int:
     return freq_num
     pass
 
+
 """
 Exercise-14: Least frequent element
 Write a function "least_frequent(my_list: list) -> int" that takes a
