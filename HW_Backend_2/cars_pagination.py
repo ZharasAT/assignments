@@ -93,3 +93,29 @@ def get_users():
     </html>
     """
     return html_content
+
+@app.get("/users/{user_id}", response_class=HTMLResponse)
+def get_user_by_id(user_id: int):
+    user = next((user for user in users if user.id == user_id), None)
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    html_content = f"""
+    <html>
+        <head>
+            <title>User Details</title>
+        </head>
+        <body>
+            <h1>User Information</h1>
+            <ul>
+                <li><strong>ID:</strong> {user.id}</li>
+                <li><strong>Email:</strong> {user.email}</li>
+                <li><strong>First Name:</strong> {user.first_name}</li>
+                <li><strong>Last Name:</strong> {user.last_name}</li>
+                <li><strong>Username:</strong> {user.username}</li>
+            </ul>
+            <a href="/users">Back to Users List</a>
+        </body>
+    </html>
+    """
+    return html_content
