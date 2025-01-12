@@ -8,5 +8,4 @@ def read_root():
 
 @app.post("/meaning-of-life")
 def meaning_of_life():
-    def meaning_of_life():
         return {"meaning": "42"}
