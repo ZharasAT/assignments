@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ta4ki.kz - Car Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+        p {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search for Cars on Ta4ki.kz</h1>
+    <form method="get" action="/cars/search">
+        <input type="text" name="car_name" value="{{ car_name }}" placeholder="Enter car name">
+        <button type="submit">Search</button>
+    </form>
+    <h2>Results</h2>
+    {% if cars %}
+        <ul>
+            {% for car in cars %}
+                <li>{{ car.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No cars found matching "{{ car_name }}".</p>
+    {% endif %}
+</body>
+</html>
