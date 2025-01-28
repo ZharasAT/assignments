@@ -7,10 +7,10 @@ from routes.cars import router as cars_router
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-# Главная страница
+# Home page
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-# Подключение маршрутов из модуля routes/cars.py
+# Connecting routes from the module routes/cars.py
 app.include_router(cars_router)

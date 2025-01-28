@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ta4ki.kz - Home</title>
+    <title>Cars List</title>
 </head>
 <body>
-    <h1>Welcome to Ta4ki.kz</h1>
-    <a href="/cars/search">
-        <button>Go to Search</button>
-    </a>
+    <h1>Cars List</h1>
     <a href="/cars/new">
         <button>Add New Car</button>
     </a>
+    <ul>
+        {% for car in cars %}
+            <li>{{ car.name }} ({{ car.year }})</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
