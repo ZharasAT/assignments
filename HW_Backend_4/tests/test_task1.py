@@ -11,8 +11,14 @@ def test_has_form():
 
 
 def test_validate_empty_form():
-    data = {"title": ""}
-    response = requests.post("http://localhost:8000/books", data=data)
+    data = {
+        "title": "",
+        "author": "",
+        "year": "",
+        "total_pages": "",
+        "genre": ""
+    }
+    response = requests.post("http://localhost:8000/books/new", data=data)
     assert response.status_code == 422
 
 
@@ -26,7 +32,7 @@ def test_post():
     }
 
     response = requests.post(
-        "http://localhost:8000/books", data=data, allow_redirects=False
+        "http://localhost:8000/books/new", data=data, allow_redirects=False
     )
     assert response.status_code == 303
 

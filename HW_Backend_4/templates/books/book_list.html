@@ -30,8 +30,10 @@
     <ul>
         {% for book in books %}
             <li>
-                <a href="/books/{{ book.id }}">{{ book.title }}</a> by {{ book.author }}
+                <a href="/books/{{ book.id }}">{{ book.title }}</a> by {{ book.author }} ({{ book.year }})<br>
+                Pages: {{ book.total_pages }}, Genre: {{ book.genre }}
             </li>
+
         {% else %}
             <li>No books available.</li>
         {% endfor %}
