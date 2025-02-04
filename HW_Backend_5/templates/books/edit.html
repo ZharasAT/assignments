@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>Edit Book</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Book List</a>
+    </nav>
+
+    <h1>Edit Book</h1>
+
+    <form action="/books/{{ book.id }}/edit" method="post">
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ book.title }}" required><br>
+
+        <label>Author:</label>
+        <input type="text" name="author" value="{{ book.author }}" required><br>
+
+        <label>Year:</label>
+        <input type="number" name="year" value="{{ book.year }}" required><br>
+
+        <label>Total Pages:</label>
+        <input type="number" name="total_pages" value="{{ book.total_pages }}" required><br>
+
+        <label>Genre:</label>
+        <input type="text" name="genre" value="{{ book.genre }}" required><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <form action="/books/{{ book.id }}/delete" method="post" style="margin-top: 10px;">
+        <button type="submit" style="color: red;">Delete Book</button>
+    </form>
+
+    <a href="/books">Back to Book List</a>
+</body>
+</html>

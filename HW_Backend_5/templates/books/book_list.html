@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <title>Book List</title>
+    <style>
+        nav {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books/new">Add Book</a>
+    </nav>
+
+    <h1>Book List</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="/books/{{ book.id }}">{{ book.title }}</a> by {{ book.author }} ({{ book.year }})<br>
+                Pages: {{ book.total_pages }}, Genre: {{ book.genre }}<br>
+            </li>
+
+        {% else %}
+            <li>No books available.</li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        {% if has_prev %}
+            <a href="/books?page={{ page - 1 }}">⬅️ Previous</a>
+        {% endif %}
+
+        <span>Page {{ page }}</span>
+
+        {% if has_next %}
+            <a href="/books?page={{ page + 1 }}">Next ➡️</a>
+        {% endif %}
+    </div>
+</body>
+</html>
