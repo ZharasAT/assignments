@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои покупки</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2em;
+            background: #fdfdfd;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .flower {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1em;
+            margin-bottom: 1em;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .flower h2 {
+            margin: 0 0 0.5em;
+            color: #27ae60;
+        }
+        .flower p {
+            margin: 0.2em 0;
+        }
+        .price {
+            font-weight: bold;
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <h1>Мои купленные цветы 💐</h1>
+
+    {% if flowers %}
+        {% for flower in flowers %}
+            <div class="flower">
+                <h2>{{ flower.name }}</h2>
+                <p>{{ flower.description }}</p>
+                <p class="price">Цена: {{ flower.price }} ₸</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Вы ещё не купили ни одного цветка.</p>
+    {% endif %}
+</body>
+</html>
